@@ -155,7 +155,9 @@ int main() {
   time_t start;
   time(&start);
   time_t total = 0;
-  int V = 10000;
+  int V = 0;
+  cout << "Quantos vértices tera seu grafo? " << endl;
+  cin >> V;
   for (int j = 0; j < 10; j++) {
     time(&start);
     unsigned int seed = time(0);
@@ -170,9 +172,9 @@ int main() {
       i++;
     } while (g.hasOddDegreeVertices());
 
-    cout << "Tentadas " << i << " vezes, total de arestas: " << total_arestas
-         << endl;
     cout << "Grafo Euleriano gerado com " << V << " vértices." << endl;
+    cout << "Tentativas de criação: " << i << " vezes, total de arestas: " << total_arestas
+         << endl;
 
     g.fleury(0);
     time_t end;

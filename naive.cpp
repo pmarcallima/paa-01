@@ -120,7 +120,7 @@ public:
   pair<int, int> getFirstNonBridgeEdge(int u) {
     for (int v : adj[u]) {
       if (!checkConnectivityAfterRemove(u, v)) {
-        return make_pair(u, v);
+        return make_pair(u, v); 
       }
     }
     return make_pair(u, adj[u].front());
@@ -142,16 +142,13 @@ public:
   void fleury(int start) {
     vector<int> path;
     int u = start;
-
     while (!adj[u].empty()) {
       path.push_back(u);
-
       pair<int, int> edge = getFirstNonBridgeEdge(u);
       int next = edge.second;
-
       removeEdge(u, next);
       u = next;
-    } //    cout << "Caminho Euleriano: ";
+    } //     cout << "Caminho Euleriano: ";
       //   for (int v : path)
       //     cout << v << " -> ";
       //   cout << "FIM" << endl;
@@ -161,25 +158,38 @@ public:
 int main() {
   time_t start;
   time(&start);
-  int V = 10000;
-  unsigned int seed = time(0);
-  Graph g(V);
-  int i = 0;
-  do {
-    g = Graph(V);
-    total_arestas = 0;
-    g.generateRandomConnectedGraph(seed);
-    g.makeEulerian();
-    seed = rand();
-    i++;
-  } while (g.hasOddDegreeVertices());
+  time_t total = 0;
+  int V = 0;
+  cout << "Quantos vértices tera seu grafo? " << endl;
+  cin >> V;
+  for (int j = 0; j < 10; j++) {
+    time(&start);
+    unsigned int seed = time(0);
+    Graph g(V);
+    int i = 0;
+    do {
+      g = Graph(V);
+      total_arestas = 0;
+      g.generateRandomConnectedGraph(seed);
+      g.makeEulerian();
+      seed = rand();
+      i++;
+    } while (g.hasOddDegreeVertices());
 
-  cout << "Tentadas " << i << " vezes" << total_arestas << endl;
-  cout << "Grafo Euleriano gerado com " << V << " vértices." << endl;
+    cout << "Grafo Euleriano gerado com " << V << " vértices." << endl;
+    cout << "Tentativas de criação: " << i
+         << " vezes, total de arestas: " << total_arestas << endl;
 
-  g.fleury(0);
-  time_t end;
-  time(&end);
-  cout << "demorou " << end - start << " segundos" << endl;
+    g.fleury(0);
+    time_t end;
+    time(&end);
+    cout << "demorou " << end - start << " segundos" << endl;
+
+    time_t tmp;
+    tmp = end - start;
+    total += tmp;
+  }
+  cout << "media: " << total / 10 << " segundos" << endl;
   return 0;
 }
+
