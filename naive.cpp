@@ -17,6 +17,8 @@ public:
   vector<int> parent, rank;
   unordered_set<long long> edges;
 
+                /** CRIAÇÃO DOS GRAFOS **/
+
   Graph(int V) : V(V), adj(V), parent(V), rank(V, 1) {
     for (int i = 0; i < V; i++)
       parent[i] = i;
@@ -90,6 +92,7 @@ public:
     adj[u].erase(remove(adj[u].begin(), adj[u].end(), v), adj[u].end());
     adj[v].erase(remove(adj[v].begin(), adj[v].end(), u), adj[v].end());
   }
+                /** ALGORITMO NAIVE **/
 
   bool checkConnectivityAfterRemove(int u, int v) {
 
@@ -139,6 +142,8 @@ public:
     return bridges;
   }
 
+            /** ALGORITMO FLEURY **/
+
   void fleury(int start) {
     vector<int> path;
     int u = start;
@@ -154,6 +159,9 @@ public:
       //   cout << "FIM" << endl;
   }
 };
+
+
+        /** MÉTODO MAIN **/
 
 int main() {
   time_t start;

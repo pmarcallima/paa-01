@@ -16,6 +16,8 @@ public:
   vector<int> parent, rank;
   unordered_set<long long> edges;
 
+              /** GERAÇÃO DO GRAFO **/
+
   Graph(int V) : V(V), adj(V), parent(V), rank(V, 1) {
     for (int i = 0; i < V; i++)
       parent[i] = i;
@@ -85,6 +87,8 @@ public:
     return false;
   }
 
+                  /** ALGORITMO DE TARJAN **/
+
   void bridgeUtil(int u, vector<bool> &visited, vector<int> &disc,
                   vector<int> &low, vector<int> &parent,
                   vector<pair<int, int>> &bridges, int &time) {
@@ -120,6 +124,8 @@ public:
     adj[v].erase(remove(adj[v].begin(), adj[v].end(), u), adj[v].end());
   }
 
+            /** ALGORITMO DE FLEURY **/
+
   void fleury(int start) {
     vector<pair<int, int>> bridges;
     vector<int> path;
@@ -150,6 +156,8 @@ public:
     //   cout << "FIM" << endl;
   }
 };
+
+              /** METÓDO MAIN **/
 
 int main() {
   time_t start;
