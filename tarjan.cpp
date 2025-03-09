@@ -156,32 +156,32 @@ int main() {
   time(&start);
   time_t total = 0;
   int V = 10000;
-  for(int j = 0; j < 10; j++)
-  {
-  time(&start);
-  unsigned int seed = time(0);
-  Graph g(V);
-  int i = 0;
-  do {
-    g = Graph(V);
-    total_arestas = 0;
-    g.generateRandomConnectedGraph(seed);
-    g.makeEulerian();
-    seed = rand();
-    i++;
-  } while (g.hasOddDegreeVertices());
+  for (int j = 0; j < 10; j++) {
+    time(&start);
+    unsigned int seed = time(0);
+    Graph g(V);
+    int i = 0;
+    do {
+      g = Graph(V);
+      total_arestas = 0;
+      g.generateRandomConnectedGraph(seed);
+      g.makeEulerian();
+      seed = rand();
+      i++;
+    } while (g.hasOddDegreeVertices());
 
-  cout << "Tentadas " << i << " vezes, total de arestas: " << total_arestas << endl;
-  cout << "Grafo Euleriano gerado com " << V << " vértices." << endl;
+    cout << "Tentadas " << i << " vezes, total de arestas: " << total_arestas
+         << endl;
+    cout << "Grafo Euleriano gerado com " << V << " vértices." << endl;
 
-  g.fleury(0);
-  time_t end;
-  time(&end);
-  cout<< "demorou " << end-start<< "segundos"<< endl;
-  time_t tmp;
-    tmp = end-start;
-    total +=tmp;
+    g.fleury(0);
+    time_t end;
+    time(&end);
+    cout << "demorou " << end - start << "segundos" << endl;
+    time_t tmp;
+    tmp = end - start;
+    total += tmp;
   }
-  cout<< "Media = "<< total/10<< "segundos";
+  cout << "Media = " << total / 10 << "segundos";
   return 0;
 }
